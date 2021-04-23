@@ -32,12 +32,12 @@ function Homepage({ posts, user }) {
 		});
 		setComment("");
 	};
-    
+
     useEffect(() => {
         setTimeout(()=>{
          setOpen(false)
         }, 5000)
-    
+
       }, [])
 
 	useEffect(() => {
@@ -54,7 +54,7 @@ function Homepage({ posts, user }) {
 						tempComments.unshift(doc.data());
 					}
 					setModalComments(tempComments);
-					
+
 				});
 		}
 		setModal(true);
@@ -75,9 +75,9 @@ function Homepage({ posts, user }) {
 	}, [Id]);
 
 	return (
-		<>  
-             <> 
-            <Snackbar 
+		<>
+             <>
+            <Snackbar
                 open={open}
                 anchorOrigin={{
                     vertical: 'center',
@@ -98,7 +98,8 @@ function Homepage({ posts, user }) {
                 user={user}
                 username={post.username}
                 imageUrl={post.imageUrl}
-                caption={post.caption}
+				caption={post.caption}
+				timestamp={post.timestamp}
                 />
             ))}
             </>

@@ -1,5 +1,10 @@
 export default function styles(theme) {
   return {
+	  	avatar: {
+			gridColumn: 1,
+			gridRow: 'span 2',
+			alignSelf: "center",
+		},
 		post: {
 			width: "100%",
 			color: theme.palette.text.primary,
@@ -8,10 +13,14 @@ export default function styles(theme) {
 		username: {
 			margin: "auto 0",
 		},
+		timestamp: {
+			margin: "auto 0",
+			color: "gray"
+		},
 		postHeader: {
 			display: "grid",
 			gridTemplateColumns: "auto 1fr",
-			gridGap: 10,
+			gridGap: "2px 10px",
 			padding: "10px ",
 		},
 		postImageHolder: {

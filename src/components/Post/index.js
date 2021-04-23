@@ -6,6 +6,27 @@ import firebase from "firebase";
 import { Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
+function computeAge(postDate) {
+	const currDate = new Date();
+	const diffmSec = currDate - postDate;
+	const diffSecs = Math.ceil(diffmSec / 1000);
+	if (diffSecs < 60) {
+		return `${diffSecs} seconds`;
+	} else {
+		const diffMins = Math.ceil(diffSecs / 60);
+		if (diffMins < 60) {
+			return `${diffMins} minutes`;
+		} else {
+			const diffHours = Math.ceil(diffMins / 60);
+			if (diffHours < 24) {
+				return `${diffHours} hours`;
+			} else {
+				return `${Math.ceil(diffHours / 24)} days`;
+			}
+		}
+	}
+}
+
 const useStyles = makeStyles(styles);
 
 function Post({
@@ -14,7 +35,8 @@ function Post({
 	username,
 	caption,
 	imageUrl,
-	setId
+	setId,
+	timestamp
 }) {
 	const classes = useStyles();
 	const postImage = useRef();
@@ -68,7 +90,7 @@ function Post({
 	}, [postId]);
 
 	const handleChange = () => {
-		setId(postId);	
+		setId(postId);
 	}
 
 	return (
@@ -76,6 +98,7 @@ function Post({
 			<div className={classes.postHeader}>
 				<Avatar className={classes.avatar} alt="Avinash" src="" />
 				<h3 className={classes.username}>{username}</h3>
+				{timestamp && <div className={classes.timestamp}>{`Posted ${computeAge(timestamp.toDate())} ago`}</div>}
 			</div>
 
 			<div className={classes.postImageHolder}>
